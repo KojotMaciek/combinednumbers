@@ -6,6 +6,10 @@ A Python utility that combines integers from a list into the largest possible nu
 
 This function takes a list of integers and rearranges them to form the largest number when concatenated together.
 
+**Two versions available:**
+1. **`combined_number.py`** - Uses `cmp_to_key` from `functools` for comparison-based sorting
+2. **`combined_number_no_cmp.py`** - Alternative version without any imports, uses a custom key class with comparison operators
+
 **Example:**
 ```python
 from combined_number import combine_elements
@@ -35,15 +39,25 @@ cd combinednumber
 
 ## Usage
 
-Run the main script:
+Run the main script (original version with cmp_to_key):
 ```bash
 python combined_number.py
 ```
 
+Run the alternative version (no imports):
+```bash
+python combined_number_no_cmp.py
+```
+
 Use in your code:
 ```python
+# Using the original version with cmp_to_key
 from combined_number import combine_elements
+result = combine_elements([50, 2, 1, 9])
+print(result)  # Output: "95021"
 
+# Or using the version without imports
+from combined_number_no_cmp import combine_elements
 result = combine_elements([50, 2, 1, 9])
 print(result)  # Output: "95021"
 ```
@@ -52,6 +66,13 @@ print(result)  # Output: "95021"
 
 Run the test suite with pytest:
 ```bash
+# Test the original version
+pytest tests/test_combined_number.py -v
+
+# Test the version without imports
+pytest tests/test_combined_number_no_cmp.py -v
+
+# Run all tests
 pytest -v
 ```
 
