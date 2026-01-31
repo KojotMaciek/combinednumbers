@@ -15,13 +15,15 @@ class CombineKey:
         return ab == ba
     
     def __lt__(self, other):
-        """Less than if this value should come AFTER the other."""
+        """Less than if ba > ab (meaning self should come after the other in descending order)."""
         ab = str(self.value) + str(other.value)
         ba = str(other.value) + str(self.value)
-        # We return True if ab < ba (meaning self should come after other)
-        return ab < ba
+        # We return True if ba > ab (self is "less than" other in normal order,
+        # so it comes after in reverse=True sorting)
+        return ba > ab
     
-    def __repr__(self):
+    def __repr__(self): 
+        """Return the string representation of the wrapped integer value."""
         return str(self.value)
 
 
@@ -29,7 +31,7 @@ def combine_elements(integers_list: list) -> str:
     """
     Combines integers from a list into the largest possible number.
     
-    Version WITHOUT cmp_to_key - uses @total_ordering decorator instead.
+    Version WITHOUT cmp_to_key - uses custom comparison operators instead.
     
     ALGORITHM EXPLANATION WITH EXAMPLE:
     Input: [3, 30, 34, 5, 9]
